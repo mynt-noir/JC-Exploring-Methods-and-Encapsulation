@@ -2,11 +2,11 @@ package org.example;
 
 import java.util.Arrays;
 
+import static org.example.Converter.celsiusToFahrenheit;
 import static org.example.Converter.fahrenheitToCelsius;
 import static org.example.ParameterPassing.modifyValue;
 import static org.example.VarargsExample.findLargest;
 import static org.example.VarargsExample.printMessages;
-import static org.example.Converter.celsiusToFahrenheit;
 
 public class Main {
     public static void changeStudentName(Student student, String newName) {
@@ -69,6 +69,10 @@ public class Main {
         System.out.println("Instance ID: " + utilInstance.getInstanceId());
         System.out.println();
 
+        double celsius1 = 25.0;
+        System.out.println(celsius1 + " degrees C is " + celsiusToFahrenheit(celsius1) +" F.");
+        System.out.println();
+
         // EXERCISE 6
         System.out.println("--- EXERCISE 6 ---");
         Display d = new Display();
@@ -126,203 +130,20 @@ public class Main {
     }
 }
 
-class Car {
-    public void startEngine() {
-        System.out.println("Engine has started.");
-    }
 
-    public String drive(int speed) {
-        return "The car is moving at " + speed + " mph.";
-    }
 
-    public void turnOffEngine() {
-        System.out.println("Engine has been turned off.");
-    }
 
-}
 
-class ParameterPassing {
-    public static void modifyValue(int value) {
-        value = 100;
-        System.out.println("Inside method: " + value);
-    }
-}
 
-class Student {
-    String name;
 
-    public Student(String name) {
-        this.name = name;
-    }
-}
 
-class VarargsExample {
-    public static void printMessages(String... messages) {
-        System.out.println("Number of messages: " + messages.length);
-        for (String msg : messages) {
-            System.out.print(msg + " ");
-        }
-        System.out.println("\n");
-    }
 
-    public static int findLargest(int... numbers) {
-        int largest;
 
-        if (numbers.length == 0) {
-            System.out.print("Largest with no numbers is: ");
 
-            return Integer.MIN_VALUE;
-        } else {
-        largest = numbers[0];
-        for (int number : numbers) {
-            largest = Math.max(number, largest);
-        }
-        System.out.print("Largest in " + Arrays.toString(numbers) + " is: ");
-        return largest;
-        }
-    }
-}
 
-class SmartDoor {
-    private boolean isLocked;
 
-    public void lockDoor() {
-        this.isLocked = true;
-        System.out.println("Locking the door...");
-    }
 
-    public void unlockDoor() {
-        this.isLocked = false;
-        System.out.println("Unlocking the door...");
-    }
 
-    public boolean isLocked() {
-        return isLocked;
-    }
-}
 
-class Utility {
-    public static String getAppName() {
-        return "My Awesome App";
-    }
 
-    public String getInstanceId() {
-        return "ID-12345";
-    }
-}
 
-class Converter {
-    public static double celsiusToFahrenheit(double celsius) {
-        return (celsius*(9.0/5.0)) + 32.0;
-    }
-
-    public static double fahrenheitToCelsius(double fahrenheit) {
-        return ((fahrenheit-32.0)*(5.0/9.0));
-    }
-}
-
-class Display {
-
-    public void show(String message) {
-        System.out.println("Message: " + message);
-    }
-
-    public void show(String message, int times) {
-        System.out.println("Repeating Message:");
-        for (int i = 0; i < times; i++) {
-            System.out.println(message);
-        }
-    }
-
-    public void show(int number) {
-        System.out.println("Number: " + number);
-    }
-}
-
-class Pizza {
-    private String toppings;
-    private int size;
-
-    public Pizza() {
-        this.toppings = "Cheese";
-        this.size = 12;
-        System.out.println("Default pizza created.");
-    }
-
-    public Pizza(String toppings) {
-        this();
-        this.toppings = toppings;
-        System.out.println("Pizza with custom toppings created.");
-    }
-
-    public Pizza(String toppings, int size) {
-        this.toppings = toppings;
-        this.size = size;
-        System.out.println("Fully custom pizza created.");
-    }
-
-    public void display() {
-        System.out.println("Size: " + size + " inches, Toppings: " + toppings);
-    }
-}
-
-class Computer {
-    String brand;
-    int ramInGB;
-
-    public Computer() {
-        this.brand = "Generic";
-        this.ramInGB = 8;
-    }
-
-    public Computer(String brand) {
-        this();
-        this.brand = brand;
-    }
-
-    public Computer(String brand, int ramInGB) {
-        this.brand = brand;
-        this.ramInGB = ramInGB;
-    }
-}
-
-class Thermostat {
-    private double temperatureCelsius;
-
-    public Thermostat(double temp) {
-        setTemperatureCelsius(temp);
-    }
-
-    public double getTemperatureCelsius() {
-        return this.temperatureCelsius;
-    }
-
-    public void setTemperatureCelsius(double temp) {
-        if (temp >= 10.0 && temp <= 30.0) {
-            this.temperatureCelsius = temp;
-        } else {
-            System.out.println("Error: Temperature must be between 10.0 and 30.0 Celsius.");
-        }
-    }
-}
-
-class User {
-    private String password;
-
-    public User() {
-        this.password = "default1";
-    }
-
-    public String getPassword() {
-        return "*".repeat(this.password.length());
-    }
-
-    public void setPassword(String password) {
-        System.out.printf("Attempting to set short password '%s'...\n", password);
-        if (password.length() >= 8) {
-            this.password = password;
-        } else {
-            System.out.println("Error: Password must be at least 8 characters long.");
-        }
-    }
-}
